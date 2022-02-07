@@ -5,7 +5,9 @@ type: builder
 
 const:
   srcDir: /usr/src
-  exportDir: /opt/perl
+
+out:
+  perl: /opt/perl
 
 provision:
   - url:
@@ -26,6 +28,6 @@ build:
              -Duserelocatableinc
          - make
 #        - make test
-        - make install DESTDIR={% exportDir %}
+        - make install DESTDIR={% perl %}
       directory: "{% srcDir %}/perl-{% version %}"
-  - export: "{% exportDir %}"
+
