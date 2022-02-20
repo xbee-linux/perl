@@ -1,5 +1,7 @@
 schema-version: 1.0
 
+type: builder
+
 description: |
   The Perl package contains the Practical Extraction and Report Language.
  
@@ -68,14 +70,28 @@ description: |
 
   zipdetails: Displays details about the internal structure of a Zip file
 
-builder: ./perl-builder
-
 in:
   version: 5.34.0
 
 provision:
-  - copy:
-      builder: perl
-      todir: /
+  - url:
+      from: https://www.cpan.org/src/5.0/perl-{% version %}.tar.xz
+      todir: "{% xbeeSrc %}"
+  - url:
+      from: https://www.linuxfromscratch.org/patches/lfs/11.0/perl-{% version %}-upstream_fixes-1.patch
+      todir: "{% xbeeSrc %}"
+      unpack: false
 
+build:
+  - shell:
+      cmds:
+        - patch -Np1 -i ../perl-{% version %}-upstream_fixes-1.patch
+        - sh Configure 
+             -des
+             -Dprefix=/usr
+             -Duserelocatableinc
+         - make
+#        - make test
+        - make install DESTDIR={% xbeeOut %}
+      directory: "{% xbeeSrc %}/perl-{% version %}"
 
