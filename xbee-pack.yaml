@@ -74,12 +74,9 @@ var:
   version: 5.34.0
 
 provision:
-  - url:
-      from: https://www.cpan.org/src/5.0/perl-{{ .version }}.tar.xz
-      todir: "{{ .xbee.src }}"
+  - url: https://www.cpan.org/src/5.0/perl-{{ .version }}.tar.xz
   - url:
       from: https://www.linuxfromscratch.org/patches/lfs/11.0/perl-{{ .version }}-upstream_fixes-1.patch
-      todir: "{{ .xbee.src }}"
       unpack: false
 
 build:
