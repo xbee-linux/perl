@@ -71,7 +71,8 @@ description: |
   zipdetails: Displays details about the internal structure of a Zip file
 
 var:
-  version: 5.34.0
+  xbee:
+    version: 5.34.0
 
 provision:
   - url: https://www.cpan.org/src/5.0/perl-{{ .version }}.tar.xz
