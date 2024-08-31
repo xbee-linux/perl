@@ -75,15 +75,15 @@ var:
     version: 5.34.0
 
 provision:
-  - url: https://www.cpan.org/src/5.0/perl-{{ .version }}.tar.xz
+  - url: https://www.cpan.org/src/5.0/perl-{{ .xbee.version }}.tar.xz
   - url:
-      from: https://www.linuxfromscratch.org/patches/lfs/11.0/perl-{{ .version }}-upstream_fixes-1.patch
+      from: https://www.linuxfromscratch.org/patches/lfs/11.0/perl-{{ .xbee.version }}-upstream_fixes-1.patch
       unpack: false
 
 build:
   - shell:
       cmds:
-        - patch -Np1 -i ../perl-{{ .version }}-upstream_fixes-1.patch
+        - patch -Np1 -i ../perl-{{ .xbee.version }}-upstream_fixes-1.patch
         - sh Configure 
              -des
              -Dprefix=/usr
@@ -91,5 +91,5 @@ build:
          - make
 #        - make test
         - make install DESTDIR={{ .xbee.out }}
-      directory: "{{ .xbee.src }}/perl-{{ .version }}"
+      directory: "{{ .xbee.src }}/perl-{{ .xbee.version }}"
 
