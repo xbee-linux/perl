@@ -1,7 +1,5 @@
 schema-version: 1.0
 
-type: builder
-
 description: |
   The Perl package contains the Practical Extraction and Report Language.
  
