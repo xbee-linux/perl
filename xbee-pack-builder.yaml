@@ -80,7 +80,7 @@ provision:
 
 build:
   - shell:
-      cmds:
+      cmd:
         - patch -Np1 -i ../perl-{{ .xbee.version }}-upstream_fixes-1.patch
         - sh Configure 
              -des
